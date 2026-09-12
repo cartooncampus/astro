@@ -1,0 +1,247 @@
+---
+interface Props {
+	title: string;
+	code: string;
+	description: string;
+	credits: number;
+	prerequisites: string[];
+	difficulty: 1 | 2 | 3 | 4 | 5;
+	survivalRate: number;
+	relatedMerchKeyword: string;
+	storeLink: string;
+}
+
+const { title, code, description, credits, difficulty, survivalRate, prerequisites, relatedMerchKeyword, storeLink } = Astro.props;
+
+const difficultyStars = Array(5).fill(0).map((_, i) => i < difficulty ? '🔴' : '⚪');
+---
+
+<div class="course-card">
+	<div class="course-header">
+		<div class="course-title-section">
+			<h3 class="course-title">{title}</h3>
+			<p class="course-code">{code}</p>
+		</div>
+		<div class="course-stats">
+			<div class="stat">
+				<span class="stat-label">Credits</span>
+				<span class="stat-value">{credits}</span>
+			</div>
+			<div class="stat">
+				<span class="stat-label">Difficulty</span>
+				<span class="stat-value">{difficultyStars.join('')}</span>
+			</div>
+		</div>
+	</div>
+
+	<p class="course-description">{description}</p>
+
+	<div class="course-details">
+		<div class="prerequisites">
+			<strong>Prerequisites:</strong>
+			<ul>
+				{prerequisites.map((prereq) => (
+					<li>{prereq}</li>
+				))}
+			</ul>
+		</div>
+		<div class="survival-rate">
+			<strong>Survival Rate:</strong>
+			<div class="progress-bar">
+				<div class="progress-fill" style={`width: ${survivalRate}%`}></div>
+			</div>
+			<p class="rate-text">{survivalRate}% of students complete this course</p>
+		</div>
+	</div>
+
+	<div class="course-merch">
+		<p class="merch-label">📍 Get Your Official Campus Gear</p>
+		<a href={`${storeLink}?keyword=${relatedMerchKeyword}`} class="merch-link" target="_blank" rel="noopener noreferrer">
+			Shop {title} Merchandise →
+		</a>
+	</div>
+</div>
+
+<style>
+	.course-card {
+		background: white;
+		border-radius: 12px;
+		padding: 2rem;
+		margin-bottom: 1.5rem;
+		border: 1px solid rgba(0, 0, 0, 0.08);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+	}
+
+	.course-card:hover {
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		transform: translateY(-2px);
+	}
+
+	.course-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 2rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.course-title-section {
+		flex: 1;
+	}
+
+	.course-title {
+		margin: 0 0 0.5rem 0;
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: rgb(var(--black));
+	}
+
+	.course-code {
+		margin: 0;
+		font-size: 0.875rem;
+		color: var(--accent);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.course-stats {
+		display: flex;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.stat-label {
+		font-size: 0.75rem;
+		color: rgb(var(--gray));
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-bottom: 0.25rem;
+	}
+
+	.stat-value {
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: rgb(var(--black));
+	}
+
+	.course-description {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: rgb(var(--gray-dark));
+		margin: 1.5rem 0;
+	}
+
+	.course-details {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		margin: 1.5rem 0;
+		padding: 1.5rem;
+		background: rgba(124, 58, 237, 0.02);
+		border-radius: 8px;
+		border: 1px solid rgba(124, 58, 237, 0.08);
+	}
+
+	.prerequisites strong,
+	.survival-rate strong {
+		display: block;
+		margin-bottom: 0.75rem;
+		font-size: 0.95rem;
+		color: rgb(var(--black));
+	}
+
+	.prerequisites ul {
+		margin: 0;
+		padding-left: 1.5rem;
+		font-size: 0.95rem;
+	}
+
+	.prerequisites li {
+		margin-bottom: 0.5rem;
+		color: rgb(var(--gray-dark));
+	}
+
+	.progress-bar {
+		width: 100%;
+		height: 8px;
+		background: rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		overflow: hidden;
+		margin-bottom: 0.5rem;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: linear-gradient(90deg, #7c3aed, #2563eb);
+		transition: width 0.3s ease;
+	}
+
+	.rate-text {
+		margin: 0;
+		font-size: 0.875rem;
+		color: rgb(var(--gray-dark));
+	}
+
+	.course-merch {
+		background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
+		border: 2px solid var(--accent);
+		border-radius: 8px;
+		padding: 1.25rem;
+		text-align: center;
+	}
+
+	.merch-label {
+		margin: 0 0 1rem 0;
+		font-weight: 600;
+		color: rgb(var(--black));
+		font-size: 0.95rem;
+	}
+
+	.merch-link {
+		display: inline-block;
+		padding: 0.65rem 1.5rem;
+		background: linear-gradient(135deg, #7c3aed, #6d28d9);
+		color: white;
+		text-decoration: none;
+		border-radius: 6px;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: all 0.3s ease;
+	}
+
+	.merch-link:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+	}
+
+	@media (max-width: 768px) {
+		.course-header {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+
+		.course-stats {
+			width: 100%;
+			gap: 1.5rem;
+		}
+
+		.course-details {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.course-card {
+			padding: 1.5rem;
+		}
+	}
+</style>
