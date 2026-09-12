@@ -2,48 +2,134 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import HomeCard from '../components/HomeCard.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, MAIN_SECTIONS } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero-content {
+				text-align: center;
+				margin-bottom: 4rem;
+				padding: 3rem 1rem;
+				background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
+				border-radius: 20px;
+				border: 1px solid rgba(124, 58, 237, 0.15);
+				backdrop-filter: blur(10px);
+			}
+
+			.hero-content h1 {
+				background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 1rem;
+				font-size: 3.5rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+			}
+
+			.hero-content .subtitle {
+				font-size: 1.25rem;
+				color: rgb(var(--gray-dark));
+				max-width: 700px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.8;
+			}
+
+			.hero-content .tagline {
+				font-size: 1rem;
+				color: var(--accent);
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 1rem;
+			}
+
+			.home-sections {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+				gap: 2.5rem;
+				margin-top: 3rem;
+				margin-bottom: 4rem;
+			}
+
+			.section-description {
+				text-align: center;
+				color: rgb(var(--gray-dark));
+				font-size: 1.1rem;
+				max-width: 800px;
+				margin: 2rem auto;
+				line-height: 1.8;
+			}
+
+			@media (max-width: 768px) {
+				.hero-content {
+					padding: 2rem 1rem;
+				}
+
+				.hero-content h1 {
+					font-size: 2.5rem;
+				}
+
+				.hero-content .subtitle {
+					font-size: 1.1rem;
+				}
+
+				.home-sections {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+			<section class="hero-content">
+				<p class="tagline">Welcome to</p>
+				<h1>CartoonCampus</h1>
+				<p class="subtitle">
+					Where fictional worlds meet real universities. Explore immersive lore hubs, discover universities 
+					across the globe, and join a thriving community of fans and scholars.
+				</p>
+			</section>
+
+			<p class="section-description">
+				Choose your adventure below and dive into one of our three main hubs:
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+
+			<div class="home-sections">
+				{MAIN_SECTIONS.map((section) => (
+					<HomeCard
+						title={section.title}
+						subtitle={section.subtitle}
+						description={section.description}
+						icon={section.icon}
+						color={section.color}
+						href={section.href}
+					/>
+				))}
+			</div>
+
+			<section style="text-align: center; margin-top: 4rem; padding-top: 3rem; border-top: 2px solid rgba(124, 58, 237, 0.1);">
+				<h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Get Started</h2>
+				<p style="font-size: 1.1rem; color: rgb(var(--gray-dark)); max-width: 600px; margin: 1rem auto;">
+					Whether you're a fan of science fiction, a curious student, a sports enthusiast, or someone looking 
+					to connect with our community, CartoonCampus has something for you. Pick a section above and begin your journey!
+				</p>
+				<div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+					<a href="/fictional-worlds" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, #7c3aed, #6d28d9); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; border: none;">
+						Explore Fictional Worlds
+					</a>
+					<a href="/real-world" style="display: inline-block; padding: 0.75rem 2rem; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease; border: none;">
+						Browse Real Universities
+					</a>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
