@@ -1,0 +1,330 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Foundation Series Universities - CartoonCampus"
+			description="Explore the premier educational institutions of Asimov's Foundation universe. Master psychohistory at Streeling and Trantor universities."
+		/>
+		<style>
+			.foundation-hero {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(30, 64, 175, 0.1) 100%);
+				border-radius: 16px;
+				padding: 3rem 2rem;
+				margin-bottom: 3rem;
+				border: 2px solid rgba(37, 99, 235, 0.2);
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.foundation-hero::before {
+				content: '';
+				position: absolute;
+				top: -50%;
+				right: -50%;
+				width: 200%;
+				height: 200%;
+				background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+				animation: galactic 20s ease-in-out infinite;
+			}
+
+			@keyframes galactic {
+				0%, 100% { transform: translate(0, 0) rotate(0deg); }
+				50% { transform: translate(30px, 30px) rotate(10deg); }
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 2;
+			}
+
+			.foundation-hero h1 {
+				background: linear-gradient(135deg, #2563eb, #1e40af);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 1rem;
+				font-size: 3.5rem;
+			}
+
+			.foundation-hero .tagline {
+				font-size: 1.25rem;
+				color: rgb(var(--gray-dark));
+				max-width: 700px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.8;
+			}
+
+			.foundation-hero .intro {
+				font-size: 1rem;
+				color: rgb(var(--gray-dark));
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			.back-link {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 0.5rem 1rem;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-link:hover {
+				transform: translateX(-4px);
+			}
+
+			.universities-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.university-card {
+				background: white;
+				border-radius: 16px;
+				padding: 2.5rem;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				border: 2px solid rgba(37, 99, 235, 0.1);
+				transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+				text-decoration: none;
+				color: inherit;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.university-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #2563eb, #1e40af);
+			}
+
+			.university-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+				border-color: #2563eb;
+			}
+
+			.card-icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.card-title {
+				font-size: 1.75rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin: 0 0 0.5rem 0;
+			}
+
+			.card-location {
+				font-size: 0.95rem;
+				color: var(--accent);
+				font-weight: 600;
+				margin-bottom: 1rem;
+			}
+
+			.card-description {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+				margin: 1.5rem 0;
+			}
+
+			.card-programs {
+				font-size: 0.9rem;
+				color: var(--accent);
+				font-weight: 500;
+				margin: 1rem 0;
+			}
+
+			.explore-btn {
+				display: inline-block;
+				margin-top: 1.5rem;
+				padding: 0.75rem 1.5rem;
+				background: linear-gradient(135deg, #2563eb, #1e40af);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.explore-btn:hover {
+				transform: translateX(4px);
+				box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+			}
+
+			.context-box {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(30, 64, 175, 0.08) 100%);
+				border-left: 4px solid #2563eb;
+				border-radius: 12px;
+				padding: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.context-box h2 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.context-box p {
+				color: rgb(var(--gray-dark));
+				line-height: 1.7;
+				margin-bottom: 1rem;
+			}
+
+			.context-box ul {
+				margin: 1rem 0;
+				padding-left: 2rem;
+				color: rgb(var(--gray-dark));
+			}
+
+			.context-box li {
+				margin-bottom: 0.5rem;
+			}
+
+			.store-cta {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+				border: 2px solid #2563eb;
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				margin-top: 3rem;
+			}
+
+			.store-cta h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.store-cta p {
+				color: rgb(var(--gray-dark));
+				margin-bottom: 1.5rem;
+			}
+
+			.store-link {
+				display: inline-block;
+				padding: 0.75rem 2rem;
+				background: linear-gradient(135deg, #2563eb, #1e40af);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.store-link:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+			}
+
+			@media (max-width: 768px) {
+				.foundation-hero {
+					padding: 2rem 1.5rem;
+				}
+
+				.foundation-hero h1 {
+					font-size: 2.5rem;
+				}
+
+				.foundation-hero .tagline {
+					font-size: 1.1rem;
+				}
+
+				.universities-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a href="../" class="back-link">← Back to Fictional Worlds</a>
+
+			<section class="foundation-hero">
+				<div class="hero-content">
+					<h1>🌌 Foundation Series</h1>
+					<p class="tagline">Asimov's Galactic Empire</p>
+					<p class="intro">
+						Welcome to the educational heart of Isaac Asimov's Foundation universe. Home to two of the galaxy's 
+						most prestigious institutions: Streeling University, the empire's leading women's college, and the 
+						University of Trantor, the ancient seat of galactic learning. Master psychohistory, imperial politics, 
+						and the mathematics that shape civilizations.
+					</p>
+				</div>
+			</section>
+
+			<section class="context-box">
+				<h2>📚 About the Foundation Universe</h2>
+				<p>
+					In Asimov's vision of the galactic empire, education serves as the backbone of civilization. The two 
+					premier universities of Trantor represent centuries of accumulated knowledge, cutting-edge research, and 
+					the training ground for the leaders and scholars who drive imperial policy.
+				</p>
+				<p><strong>Key Themes:</strong></p>
+				<ul>
+					<li><strong>Psychohistory:</strong> The mathematical science of predicting mass behavior</li>
+					<li><strong>Imperial Politics:</strong> Navigating the complex web of galactic power structures</li>
+					<li><strong>Advanced Mathematics:</strong> The language that binds the galaxy together</li>
+					<li><strong>Robots & AI:</strong> The role of artificial intelligences in society</li>
+					<li><strong>Space Travel & Hyperspace:</strong> Understanding faster-than-light physics</li>
+				</ul>
+			</section>
+
+			<section class="universities-grid">
+				<a href="./streeling-university/" class="university-card">
+					<div class="card-icon">👩‍🎓</div>
+					<h3 class="card-title">Streeling University</h3>
+					<p class="card-location">📍 Trantor (Imperial Sector)</p>
+					<p class="card-description">
+						The empire's premier all-female institution. Where brilliant minds gather to master psychohistory, 
+						imperial politics, and the subtleties of galactic power. Founded on tradition, leading into the future.
+					</p>
+					<p class="card-programs">🎓 3 Featured Courses</p>
+					<span class="explore-btn">Explore Streeling →</span>
+				</a>
+
+				<a href="./trantor-university/" class="university-card">
+					<div class="card-icon">🏛️</div>
+					<h3 class="card-title">University of Trantor</h3>
+					<p class="card-location">📍 Trantor (Galactic Center)</p>
+					<p class="card-description">
+						The oldest and most prestigious institution in the galaxy. Training elite minds for over 11,000 years. 
+						From galactic history to hyperspace physics, from robot ethics to imperial continuity—Trantor sets the standard.
+					</p>
+					<p class="card-programs">🎓 3 Featured Courses</p>
+					<span class="explore-btn">Explore Trantor U →</span>
+				</a>
+			</section>
+
+			<section class="store-cta">
+				<h3>Show Your Imperial Pride</h3>
+				<p>
+					Whether you graduated from Streeling or the University of Trantor, wear your affiliation with pride. 
+					Our official Foundation Series merchandise celebrates the academic traditions of these legendary institutions.
+				</p>
+				<a href="https://store.cartooncampus.ca/foundation" target="_blank" rel="noopener noreferrer" class="store-link">
+					Shop Foundation Series Merch
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
