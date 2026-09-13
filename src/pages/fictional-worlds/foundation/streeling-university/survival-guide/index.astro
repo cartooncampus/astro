@@ -1,0 +1,269 @@
+---
+import BaseHead from '../../../../../components/BaseHead.astro';
+import Header from '../../../../../components/Header.astro';
+import Footer from '../../../../../components/Footer.astro';
+import { streelingUniversity } from '../../../../../data/fictionalUniversities';
+
+const university = streelingUniversity;
+const compatibilityEntries = Object.entries(university.survivalGuide.speciesCompatibility);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title={`Survival Guide - ${university.name} | CartoonCampus`}
+			description={`Everything you need to know about attending ${university.name}. Compatibility checklist and survival tips for a Streeling education.`}
+		/>
+		<style>
+			.survival-hero {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(30, 64, 175, 0.1) 100%);
+				border-radius: 16px;
+				padding: 3rem 2rem;
+				margin-bottom: 3rem;
+				border: 2px solid rgba(37, 99, 235, 0.2);
+				text-align: center;
+			}
+
+			.survival-hero h1 {
+				font-size: 2.5rem;
+				color: rgb(var(--black));
+				margin: 0 0 1rem 0;
+			}
+
+			.survival-hero p {
+				font-size: 1.1rem;
+				color: rgb(var(--gray-dark));
+				max-width: 700px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			.back-link {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 0.5rem 1rem;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-link:hover {
+				transform: translateX(-4px);
+			}
+
+			.section-title {
+				font-size: 1.75rem;
+				margin: 2.5rem 0 1.5rem 0;
+				padding-bottom: 1rem;
+				border-bottom: 2px solid rgba(37, 99, 235, 0.2);
+				color: rgb(var(--black));
+			}
+
+			.survival-rate-card {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(30, 64, 175, 0.08) 100%);
+				border: 2px solid var(--accent);
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+
+			.survival-rate-card h2 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.big-number {
+				font-size: 3.5rem;
+				font-weight: 700;
+				background: linear-gradient(135deg, #2563eb, #1e40af);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin: 0.5rem 0;
+			}
+
+			.big-label {
+				color: rgb(var(--gray-dark));
+				font-size: 1.1rem;
+			}
+
+			.compatibility-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 2rem;
+			}
+
+			.compatibility-item {
+				background: white;
+				border-radius: 12px;
+				padding: 1.5rem;
+				border-left: 4px solid var(--accent);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			}
+
+			.compatibility-species {
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin-bottom: 0.5rem;
+				font-size: 1.1rem;
+			}
+
+			.compatibility-level {
+				display: inline-block;
+				padding: 0.25rem 0.75rem;
+				border-radius: 4px;
+				font-weight: 600;
+				font-size: 0.85rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.level-easy {
+				background: rgba(16, 185, 129, 0.1);
+				color: #059669;
+			}
+
+			.level-moderate {
+				background: rgba(251, 191, 36, 0.1);
+				color: #d97706;
+			}
+
+			.level-hard {
+				background: rgba(239, 68, 68, 0.1);
+				color: #dc2626;
+			}
+
+			.compatibility-description {
+				color: rgb(var(--gray-dark));
+				font-size: 0.95rem;
+				line-height: 1.6;
+			}
+
+			.tips-list {
+				background: white;
+				border-radius: 12px;
+				padding: 2rem;
+				border-left: 4px solid var(--accent);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+				margin-bottom: 2rem;
+			}
+
+			.tips-list h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.tips-list ol {
+				margin: 1rem 0;
+				padding-left: 2rem;
+			}
+
+			.tips-list li {
+				margin-bottom: 1rem;
+				color: rgb(var(--gray-dark));
+				line-height: 1.7;
+			}
+
+			.cta-banner {
+				background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+				border: 2px solid var(--accent);
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				margin-top: 3rem;
+			}
+
+			.cta-banner h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.cta-banner p {
+				color: rgb(var(--gray-dark));
+				margin-bottom: 1.5rem;
+			}
+
+			.store-link {
+				display: inline-block;
+				padding: 0.75rem 2rem;
+				background: linear-gradient(135deg, #2563eb, #1e40af);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.store-link:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a href="../" class="back-link">← Back to {university.shortName}</a>
+
+			<section class="survival-hero">
+				<h1>🎯 Survival Guide</h1>
+				<p>Is {university.shortName} right for you? Check your species compatibility and discover tips for thriving in an elite academic environment.</p>
+			</section>
+
+			<section class="survival-rate-card">
+				<h2>Orientation Survival Rate</h2>
+				<div class="big-number">{university.survivalGuide.orientationSurvivalRate}%</div>
+				<p class="big-label">of students successfully complete orientation</p>
+			</section>
+
+			<section>
+				<h2 class="section-title">Species Compatibility</h2>
+				<p>Not all species are equally suited to {university.name}. Check your compatibility below:</p>
+				
+				<div class="compatibility-grid">
+					{compatibilityEntries.map(([species, level]) => {
+						let levelClass = 'level-hard';
+						if (level.includes('Easy')) levelClass = 'level-easy';
+						else if (level.includes('Moderate')) levelClass = 'level-moderate';
+						
+						return (
+							<div class="compatibility-item">
+								<div class="compatibility-species">{species}</div>
+								<span class={`compatibility-level ${levelClass}`}>{level}</span>
+								<p class="compatibility-description">
+									{species === 'Female Human' && 'Streeling was built for you. You\'ll thrive in this environment.'}
+									{species === 'Male Human' && 'Technically you can attend, but you\'ll be the minority. The university is historically female-centric.'}
+									{species === 'Non-Binary/Alien' && 'Progressive admissions. You\'re welcome here, though some traditional elements remain.'}
+								</p>
+							</div>
+						);
+					})}
+				</div>
+			</section>
+
+			<section class="tips-list">
+				<h3>💡 Survival Tips for {university.shortName} Students</h3>
+				<ol>
+					{university.survivalGuide.tips.map((tip) => (
+						<li>{tip}</li>
+					))}
+				</ol>
+			</section>
+
+			<section class="cta-banner">
+				<h3>Prepare for Your Journey</h3>
+				<p>
+					Whether you're a prospective student, alumni, or devoted fan of the Foundation universe, 
+					gear up with official {university.name} merchandise.
+				</p>
+				<a href={university.storeLink} target="_blank" rel="noopener noreferrer" class="store-link">
+					Shop Official {university.shortName} Merch
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
