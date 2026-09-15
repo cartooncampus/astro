@@ -1,0 +1,271 @@
+---
+import type { FictionalUniversity } from '../data/fictionalUniversities';
+
+interface Props {
+	university: FictionalUniversity;
+}
+
+const { university } = Astro.props;
+const compatibilityEntries = Object.entries(university.survivalGuide.speciesCompatibility);
+---
+
+<style>
+	.survival-hero {
+		background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(75, 29, 149, 0.1) 100%);
+		border: 2px solid rgba(124, 58, 237, 0.2);
+		border-radius: 16px;
+		margin-bottom: 3rem;
+		padding: 3rem 2rem;
+		text-align: center;
+	}
+
+	.survival-hero h1, .section-title, .survival-rate-card h2, .cta-banner h3 {
+		color: rgb(var(--black));
+	}
+
+	.survival-hero h1 {
+		font-size: 2.5rem;
+		margin: 0 0 1rem;
+	}
+
+	.survival-hero p, .compatibility-description, .hazard-description, .tips-list li, .cta-banner p {
+		color: rgb(var(--gray-dark));
+		line-height: 1.7;
+	}
+
+	.survival-hero p {
+		font-size: 1.1rem;
+		margin: 0 auto;
+		max-width: 700px;
+	}
+
+	.back-link {
+		color: var(--accent);
+		display: inline-block;
+		font-weight: 600;
+		margin-bottom: 2rem;
+		padding: 0.5rem 1rem;
+		text-decoration: none;
+		transition: transform 0.3s ease;
+	}
+
+	.back-link:hover {
+		transform: translateX(-4px);
+	}
+
+	.section-title {
+		border-bottom: 2px solid rgba(124, 58, 237, 0.2);
+		font-size: 1.75rem;
+		margin: 2.5rem 0 1.5rem;
+		padding-bottom: 1rem;
+	}
+
+	.survival-rate-card, .cta-banner {
+		background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%);
+		border: 2px solid var(--accent);
+		border-radius: 12px;
+		padding: 2rem;
+		text-align: center;
+	}
+
+	.survival-rate-card {
+		margin-bottom: 2rem;
+	}
+
+	.survival-rate-card h2, .cta-banner h3 {
+		margin-top: 0;
+	}
+
+	.big-number {
+		background: linear-gradient(135deg, #7c3aed, #2563eb);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-size: 3.5rem;
+		font-weight: 700;
+		margin: 0.5rem 0;
+	}
+
+	.big-label {
+		color: rgb(var(--gray-dark));
+		font-size: 1.1rem;
+	}
+
+	.compatibility-grid, .hazards-grid {
+		display: grid;
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.compatibility-grid {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	}
+
+	.hazards-grid {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+
+	.compatibility-item, .hazard-card, .tips-list {
+		background: white;
+		border-radius: 12px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		padding: 1.5rem;
+	}
+
+	.compatibility-item, .tips-list {
+		border-left: 4px solid var(--accent);
+	}
+
+	.hazard-card {
+		border: 2px solid rgba(239, 68, 68, 0.2);
+	}
+
+	.compatibility-species, .hazard-title {
+		color: rgb(var(--black));
+		font-size: 1.1rem;
+		font-weight: 700;
+		margin-bottom: 0.75rem;
+	}
+
+	.compatibility-level {
+		border-radius: 4px;
+		display: inline-block;
+		font-size: 0.85rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+		padding: 0.25rem 0.75rem;
+	}
+
+	.level-easy { background: rgba(16, 185, 129, 0.1); color: #059669; }
+	.level-moderate { background: rgba(251, 191, 36, 0.1); color: #d97706; }
+	.level-hard { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
+	.level-impossible { background: rgba(107, 114, 128, 0.1); color: #4b5563; }
+
+	.compatibility-description, .hazard-description {
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	.tips-list {
+		margin-bottom: 2rem;
+		padding: 2rem;
+	}
+
+	.tips-list h3 {
+		color: rgb(var(--black));
+		margin-top: 0;
+	}
+
+	.tips-list ol {
+		margin: 1rem 0;
+		padding-left: 2rem;
+	}
+
+	.tips-list li {
+		margin-bottom: 1rem;
+	}
+
+	.cta-banner {
+		margin-top: 3rem;
+	}
+
+	.cta-banner p {
+		margin-bottom: 1.5rem;
+	}
+
+	.store-link {
+		background: linear-gradient(135deg, #7c3aed, #6d28d9);
+		border-radius: 8px;
+		color: white;
+		display: inline-block;
+		font-weight: 600;
+		padding: 0.75rem 2rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.store-link:hover {
+		box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4);
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 768px) {
+		.survival-hero { padding: 2rem 1.5rem; }
+		.survival-hero h1 { font-size: 1.75rem; }
+		.big-number { font-size: 2.5rem; }
+		.section-title { font-size: 1.3rem; }
+	}
+</style>
+
+<a href="/fictional-worlds/" class="back-link">← Back to Fictional Worlds</a>
+
+<section class="survival-hero">
+	<h1>🎯 {university.name} Survival Guide</h1>
+	<p>Check your compatibility, learn about local hazards, and discover how to thrive at {university.name}.</p>
+</section>
+
+<section class="survival-rate-card">
+	<h2>Orientation Survival Rate</h2>
+	<div class="big-number">{university.survivalGuide.orientationSurvivalRate}%</div>
+	<p class="big-label">of students successfully complete orientation without major incident</p>
+</section>
+
+<section>
+	<h2 class="section-title">Species Compatibility</h2>
+	<p>Not every visitor is equally suited to {university.name}. Check your compatibility below:</p>
+
+	<div class="compatibility-grid">
+		{compatibilityEntries.map(([species, entry]) => {
+			const [level, ...descriptionParts] = entry.split(' - ');
+			const description = descriptionParts.join(' - ') || 'Contact admissions for details.';
+			let levelClass = 'level-impossible';
+			if (level === 'Easy') levelClass = 'level-easy';
+			else if (level === 'Moderate') levelClass = 'level-moderate';
+			else if (level === 'Hard') levelClass = 'level-hard';
+
+			return (
+				<div class="compatibility-item">
+					<div class="compatibility-species">{species}</div>
+					<span class={`compatibility-level ${levelClass}`}>{level}</span>
+					<p class="compatibility-description">{description}</p>
+				</div>
+			);
+		})}
+	</div>
+</section>
+
+<section>
+	<h2 class="section-title">Environmental Hazards</h2>
+	<p>Be prepared for these local challenges:</p>
+
+	<div class="hazards-grid">
+		{university.survivalGuide.environmentalHazards.map((hazard) => {
+			const [title, ...descriptionParts] = hazard.split('(');
+			const description = descriptionParts.join('(').replace(/\)$/, '') || 'Be cautious.';
+
+			return (
+				<div class="hazard-card">
+					<div class="hazard-title">⚠️ {title.trim()}</div>
+					<p class="hazard-description">{description}</p>
+				</div>
+			);
+		})}
+	</div>
+</section>
+
+<section class="tips-list">
+	<h3>💡 Survival Tips for {university.shortName} Students</h3>
+	<ol>
+		{university.survivalGuide.tips.map((tip) => (
+			<li>{tip}</li>
+		))}
+	</ol>
+</section>
+
+<section class="cta-banner">
+	<h3>Prepare for Your Journey</h3>
+	<p>Whether you are a prospective student or a devoted fan of {university.universe}, gear up with official {university.name} merchandise.</p>
+	<a href={university.storeLink} target="_blank" rel="noopener noreferrer" class="store-link">
+		Shop Survival Gear & Merch
+	</a>
+</section>
