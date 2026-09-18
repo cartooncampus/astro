@@ -1,0 +1,95 @@
+---
+import type { FictionalUniversity } from '../data/fictionalUniversities';
+
+interface Props {
+	university: FictionalUniversity;
+}
+
+const { university } = Astro.props;
+---
+
+<style>
+	.hero, .overview-card, .cta {
+		border-radius: 16px;
+	}
+
+	.hero {
+		background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(30, 64, 175, 0.1));
+		border: 2px solid rgba(37, 99, 235, 0.2);
+		margin-bottom: 3rem;
+		padding: 3rem 2rem;
+	}
+
+	.icon { font-size: 4rem; margin-bottom: 1rem; }
+	.hero h1 { color: rgb(var(--black)); font-size: 2.8rem; margin: 0 0 0.5rem; }
+	.location { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+	.founded { color: rgb(var(--gray-dark)); font-size: 0.9rem; margin-bottom: 1.5rem; }
+	.mission { border-left: 4px solid var(--accent); color: rgb(var(--black)); font-size: 1.25rem; font-style: italic; line-height: 1.7; margin: 1.5rem 0; padding-left: 1.5rem; }
+	.description { color: rgb(var(--gray-dark)); line-height: 1.8; max-width: 800px; }
+
+	.nav-buttons { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+	.nav-btn, .store-btn {
+		background: linear-gradient(135deg, #2563eb, #1e40af);
+		border-radius: 8px;
+		color: white;
+		display: inline-block;
+		font-weight: 600;
+		padding: 0.75rem 1.5rem;
+		text-decoration: none;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	.nav-btn:hover, .store-btn:hover { box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); transform: translateY(-2px); }
+	.secondary { background: white; border: 2px solid var(--accent); color: var(--accent); }
+	.secondary:hover { background: var(--accent); color: white; }
+
+	.overview-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-bottom: 3rem; }
+	.overview-card { background: white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); padding: 2rem; }
+	.overview-card h2 { color: var(--accent); font-size: 1.1rem; margin: 0 0 1rem; text-transform: uppercase; }
+	.overview-card p { color: rgb(var(--gray-dark)); line-height: 1.6; margin: 0; }
+
+	.cta { background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(30, 64, 175, 0.1)); border: 2px solid var(--accent); padding: 2rem; text-align: center; }
+	.cta h2 { color: rgb(var(--black)); margin-top: 0; }
+	.cta p { color: rgb(var(--gray-dark)); line-height: 1.7; margin-bottom: 1.5rem; }
+
+	@media (max-width: 768px) {
+		.hero { padding: 2rem 1.5rem; }
+		.hero h1 { font-size: 2rem; }
+		.nav-buttons { flex-direction: column; }
+		.nav-btn { text-align: center; }
+	}
+</style>
+
+<section class="hero">
+	<div class="icon">{university.icon}</div>
+	<h1>{university.name}</h1>
+	<p class="location">📍 {university.location}</p>
+	<p class="founded">Founded: {university.founded}</p>
+	<p class="mission">"{university.missionStatement}"</p>
+	<p class="description">{university.description}</p>
+	<div class="nav-buttons">
+		<a href="./courses/" class="nav-btn">📚 View Courses</a>
+		<a href="./survival-guide/" class="nav-btn secondary">🎯 Survival Guide</a>
+		<a href={university.storeLink} target="_blank" rel="noopener noreferrer" class="nav-btn secondary">🛍️ Shop Merch</a>
+	</div>
+</section>
+
+<section class="overview-grid">
+	<div class="overview-card">
+		<h2>📚 {university.courses.length} Featured Courses</h2>
+		<p>Explore programs built to prepare students for the opportunities and hazards of {university.universe}.</p>
+	</div>
+	<div class="overview-card">
+		<h2>🎯 Survival Rate: {university.survivalGuide.orientationSurvivalRate}%</h2>
+		<p>Review your compatibility and learn how to thrive in this distinctive academic environment.</p>
+	</div>
+	<div class="overview-card">
+		<h2>🌍 {Object.keys(university.survivalGuide.speciesCompatibility).length} Groups Supported</h2>
+		<p>Admissions welcomes qualified applicants from throughout the multiverse.</p>
+	</div>
+</section>
+
+<section class="cta">
+	<h2>Represent {university.shortName}</h2>
+	<p>Celebrate the academic traditions of {university.name} with official campus merchandise.</p>
+	<a href={university.storeLink} target="_blank" rel="noopener noreferrer" class="store-btn">Browse Official Campus Gear</a>
+</section>

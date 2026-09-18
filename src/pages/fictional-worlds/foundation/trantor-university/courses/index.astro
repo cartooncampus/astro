@@ -1,9 +1,9 @@
 ---
-import BaseHead from '../../../../components/BaseHead.astro';
-import Header from '../../../../components/Header.astro';
-import Footer from '../../../../components/Footer.astro';
-import CourseCard from '../../../../components/CourseCard.astro';
-import { trantorUniversity } from '../../../../data/fictionalUniversities';
+import BaseHead from '../../../../../components/BaseHead.astro';
+import CourseCatalog from '../../../../../components/CourseCatalog.astro';
+import Footer from '../../../../../components/Footer.astro';
+import Header from '../../../../../components/Header.astro';
+import { trantorUniversity } from '../../../../../data/fictionalUniversities';
 
 const university = trantorUniversity;
 ---
@@ -11,167 +11,11 @@ const university = trantorUniversity;
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead 
-			title={`Course Catalog - ${university.name} | CartoonCampus`}
-			description={`Explore the course catalog at ${university.name}. Master galactic history, hyperspace physics, and robot ethics.`}
-		/>
-		<style>
-			.catalog-hero {
-				background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(30, 64, 175, 0.1) 100%);
-				border-radius: 16px;
-				padding: 3rem 2rem;
-				margin-bottom: 3rem;
-				border: 2px solid rgba(37, 99, 235, 0.2);
-				text-align: center;
-			}
-
-			.catalog-hero h1 {
-				font-size: 2.5rem;
-				color: rgb(var(--black));
-				margin: 0 0 1rem 0;
-			}
-
-			.catalog-hero p {
-				font-size: 1.1rem;
-				color: rgb(var(--gray-dark));
-				max-width: 700px;
-				margin: 0 auto;
-				line-height: 1.7;
-			}
-
-			.courses-intro {
-				background: white;
-				border-radius: 12px;
-				padding: 2rem;
-				margin-bottom: 2rem;
-				border-left: 4px solid var(--accent);
-			}
-
-			.courses-intro h2 {
-				margin-top: 0;
-				color: rgb(var(--black));
-			}
-
-			.courses-intro p {
-				color: rgb(var(--gray-dark));
-				line-height: 1.7;
-				margin-bottom: 1rem;
-			}
-
-			.courses-list {
-				margin-bottom: 3rem;
-			}
-
-			.course-section-title {
-				font-size: 1.5rem;
-				margin: 2.5rem 0 1.5rem 0;
-				padding-bottom: 1rem;
-				border-bottom: 2px solid rgba(37, 99, 235, 0.2);
-				color: rgb(var(--black));
-			}
-
-			.back-link {
-				display: inline-block;
-				margin-bottom: 2rem;
-				padding: 0.5rem 1rem;
-				color: var(--accent);
-				text-decoration: none;
-				font-weight: 600;
-				transition: all 0.3s ease;
-			}
-
-			.back-link:hover {
-				transform: translateX(-4px);
-			}
-
-			.store-cta {
-				background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
-				border: 2px solid var(--accent);
-				border-radius: 12px;
-				padding: 2rem;
-				text-align: center;
-				margin-top: 3rem;
-			}
-
-			.store-cta h3 {
-				margin-top: 0;
-				color: rgb(var(--black));
-			}
-
-			.store-link {
-				display: inline-block;
-				padding: 0.75rem 2rem;
-				background: linear-gradient(135deg, #2563eb, #1e40af);
-				color: white;
-				text-decoration: none;
-				border-radius: 8px;
-				font-weight: 600;
-				transition: all 0.3s ease;
-			}
-
-			.store-link:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
-			}
-
-			@media (max-width: 768px) {
-				.catalog-hero {
-					padding: 2rem 1.5rem;
-				}
-
-				.catalog-hero h1 {
-					font-size: 1.75rem;
-				}
-			}
-		</style>
+		<BaseHead title={`Course Catalog - ${university.name} | CartoonCampus`} description={`Explore featured courses at ${university.name}.`} />
 	</head>
 	<body>
 		<Header />
-		<main>
-			<a href="../" class="back-link">← Back to {university.shortName}</a>
-
-			<section class="catalog-hero">
-				<h1>📚 Course Catalog</h1>
-				<p>{university.name} offers a diverse selection of courses spanning galactic history, physics, ethics, and imperial policy.</p>
-			</section>
-
-			<section class="courses-intro">
-				<h2>Welcome to Our Curriculum</h2>
-				<p>
-					Each course at {university.name} is carefully designed to prepare you for leadership in the galactic empire. 
-					Below is a selection of our most popular offerings.
-				</p>
-			</section>
-
-			<section class="courses-list">
-				<h2 class="course-section-title">Featured Courses</h2>
-				
-				{university.courses.map((course) => (
-					<CourseCard
-						title={course.title}
-						code={course.code}
-						description={course.description}
-						credits={course.credits}
-						prerequisites={course.prerequisites}
-						difficulty={course.difficulty}
-						survivalRate={course.survivalRate}
-						relatedMerchKeyword={course.relatedMerchKeyword}
-						storeLink={university.storeLink}
-					/>
-				))}
-			</section>
-
-			<section class="store-cta">
-				<h3>📍 Show Your Academic Pride</h3>
-				<p>
-					Completed a course? Show your affiliation with official {university.name} apparel. 
-					Our merchandise celebrates the academic traditions of this prestigious institution.
-				</p>
-				<a href={university.storeLink} target="_blank" rel="noopener noreferrer" class="store-link">
-					Shop Official {university.shortName} Merch
-				</a>
-			</section>
-		</main>
+		<main><CourseCatalog university={university} /></main>
 		<Footer />
 	</body>
 </html>
