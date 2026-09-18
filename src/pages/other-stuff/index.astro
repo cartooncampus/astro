@@ -1,0 +1,32 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import UnderConstruction from '../../components/UnderConstruction.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Other Stuff - Coming Soon | CartoonCampus"
+			description="CartoonCampus is preparing more ways to play, create, and connect with the community."
+		/>
+	</head>
+	<body>
+		<Header />
+		<UnderConstruction
+			eyebrow="The community playground"
+			title="Something fun is taking shape."
+			description="This is where CartoonCampus gets extra creative. We are building a lively collection of community projects, playful discoveries, and unexpected campus moments."
+			highlights={[
+				'Creative community projects and collaborations.',
+				'Playful features made for curious campus minds.',
+				'More ways to share, discover, and connect.'
+			]}
+			icon="🎮"
+			theme="other-stuff"
+		/>
+		<Footer />
+	</body>
+</html>

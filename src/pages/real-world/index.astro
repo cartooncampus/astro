@@ -1,0 +1,32 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import UnderConstruction from '../../components/UnderConstruction.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Real World - Coming Soon | CartoonCampus"
+			description="CartoonCampus is building a new guide to universities and campus life around the world."
+		/>
+	</head>
+	<body>
+		<Header />
+		<UnderConstruction
+			eyebrow="The real-world campus guide"
+			title="The world is our campus."
+			description="We are putting the finishing touches on a new way to explore universities, traditions, and student life around the globe. Check back soon for your next real-world discovery."
+			highlights={[
+				'University guides organized for easy exploration.',
+				'Campus traditions, communities, and stories.',
+				'Fresh inspiration for students and curious fans.'
+			]}
+			icon="🎓"
+			theme="real-world"
+		/>
+		<Footer />
+	</body>
+</html>
