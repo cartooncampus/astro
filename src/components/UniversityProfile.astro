@@ -3,9 +3,11 @@ import type { FictionalUniversity } from '../data/fictionalUniversities';
 
 interface Props {
 	university: FictionalUniversity;
+	backHref?: string;
+	backLabel?: string;
 }
 
-const { university } = Astro.props;
+const { university, backHref, backLabel } = Astro.props;
 ---
 
 <style>
@@ -20,6 +22,8 @@ const { university } = Astro.props;
 		padding: 3rem 2rem;
 	}
 
+	.back-link { color: var(--accent); display: inline-block; font-weight: 600; margin-bottom: 1.5rem; text-decoration: none; }
+	.back-link:hover { transform: translateX(-4px); }
 	.icon { font-size: 4rem; margin-bottom: 1rem; }
 	.hero h1 { color: rgb(var(--black)); font-size: 2.8rem; margin: 0 0 0.5rem; }
 	.location { color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
@@ -60,6 +64,7 @@ const { university } = Astro.props;
 </style>
 
 <section class="hero">
+	{backHref && <a href={backHref} class="back-link">← Back to {backLabel}</a>}
 	<div class="icon">{university.icon}</div>
 	<h1>{university.name}</h1>
 	<p class="location">📍 {university.location}</p>

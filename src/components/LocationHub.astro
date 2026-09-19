@@ -1,0 +1,81 @@
+---
+import type { FictionalLocation } from '../data/fictionalLocations';
+
+interface Props {
+	location: FictionalLocation;
+}
+
+const { location } = Astro.props;
+const locationPath = `/fictional-worlds/${location.universeSlug}/${location.slug}`;
+---
+
+<main class={`location-hub ${location.theme}`}>
+	<a class="back-link" href="/fictional-worlds/">← Back to Fictional Worlds</a>
+	<section class="hero">
+		<p class="eyebrow">{location.type} guide</p>
+		<div class="icon" aria-hidden="true">{location.icon}</div>
+		<h1>{location.name}</h1>
+		<p>{location.description}</p>
+	</section>
+
+	<section class="topics" aria-labelledby="topics-title">
+		<h2 id="topics-title">What to study here</h2>
+		<ul>
+			{location.topics.map((topic) => <li>{topic}</li>)}
+		</ul>
+	</section>
+
+	<section class="universities" aria-labelledby="universities-title">
+		<h2 id="universities-title">Universities in {location.name}</h2>
+		<div class="university-grid">
+			{location.universities.map((university) => (
+				<a class="university-card" href={`${locationPath}/${university.id}-university/`}>
+					<span class="university-icon" aria-hidden="true">{university.icon}</span>
+					<h3>{university.name}</h3>
+					<p>{university.description}</p>
+					<span class="explore">Explore {university.shortName} →</span>
+				</a>
+			))}
+		</div>
+	</section>
+
+	<section class="cta">
+		<h2>Show your {location.name} pride</h2>
+		<p>Find official merchandise inspired by this corner of the multiverse.</p>
+		<a href={location.storeLink} target="_blank" rel="noopener noreferrer">Shop the collection</a>
+	</section>
+</main>
+
+<style>
+	.location-hub {
+		--primary: #2563eb;
+		--secondary: #1e40af;
+		--soft: rgba(37, 99, 235, 0.1);
+	}
+	.location-hub.dune { --primary: #ea580c; --secondary: #c2410c; --soft: rgba(234, 88, 12, 0.1); }
+	.location-hub.lovecraft { --primary: #7c3aed; --secondary: #4c1d95; --soft: rgba(124, 58, 237, 0.1); }
+	.location-hub.avatar { --primary: #059669; --secondary: #047857; --soft: rgba(5, 150, 105, 0.1); }
+	.back-link { color: var(--primary); display: inline-block; font-weight: 600; margin-bottom: 1.5rem; text-decoration: none; }
+	.hero, .topics, .cta, .university-card { border-radius: 16px; }
+	.hero { background: linear-gradient(135deg, var(--soft), white); border: 2px solid var(--soft); padding: 3rem 2rem; text-align: center; }
+	.eyebrow { color: var(--primary); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; margin: 0 0 0.5rem; text-transform: uppercase; }
+	.icon { font-size: 3.5rem; }
+	.hero h1 { color: rgb(var(--black)); font-size: clamp(2.5rem, 6vw, 3.75rem); margin: 0.5rem 0 1rem; }
+	.hero > p:last-child { color: rgb(var(--gray-dark)); font-size: 1.1rem; line-height: 1.7; margin: 0 auto; max-width: 720px; }
+	.topics { background: var(--soft); margin: 2rem 0 3rem; padding: 1.5rem 2rem; text-align: center; }
+	h2 { color: rgb(var(--black)); font-size: 1.75rem; margin: 0 0 1.25rem; }
+	.topics ul { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; list-style: none; margin: 0; padding: 0; }
+	.topics li { background: white; border-radius: 999px; color: var(--primary); font-weight: 600; padding: 0.55rem 1rem; }
+	.universities h2 { text-align: center; }
+	.university-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+	.university-card { border: 1px solid var(--soft); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); color: inherit; padding: 2rem; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+	.university-card:hover { box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12); transform: translateY(-5px); }
+	.university-icon { display: block; font-size: 2.5rem; margin-bottom: 0.75rem; }
+	.university-card h3 { color: rgb(var(--black)); font-size: 1.5rem; margin: 0 0 0.75rem; }
+	.university-card p { color: rgb(var(--gray-dark)); line-height: 1.6; }
+	.explore { color: var(--primary); display: inline-block; font-weight: 700; margin-top: 1rem; }
+	.cta { background: linear-gradient(135deg, var(--soft), white); border: 2px solid var(--primary); margin-top: 3rem; padding: 2rem; text-align: center; }
+	.cta p { color: rgb(var(--gray-dark)); margin-bottom: 1.5rem; }
+	.cta a { background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 8px; color: white; display: inline-block; font-weight: 600; padding: 0.75rem 1.5rem; text-decoration: none; }
+	@media (max-width: 768px) { .hero { padding: 2rem 1.5rem; } .topics { padding: 1.5rem; } }
+</style>

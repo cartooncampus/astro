@@ -3,9 +3,11 @@ import type { FictionalUniversity } from '../data/fictionalUniversities';
 
 interface Props {
 	university: FictionalUniversity;
+	backHref?: string;
+	backLabel?: string;
 }
 
-const { university } = Astro.props;
+const { university, backHref = '/fictional-worlds/', backLabel = 'Fictional Worlds' } = Astro.props;
 const compatibilityEntries = Object.entries(university.survivalGuide.speciesCompatibility);
 ---
 
@@ -197,7 +199,7 @@ const compatibilityEntries = Object.entries(university.survivalGuide.speciesComp
 	}
 </style>
 
-<a href="/fictional-worlds/" class="back-link">← Back to Fictional Worlds</a>
+<a href={backHref} class="back-link">← Back to {backLabel}</a>
 
 <section class="survival-hero">
 	<h1>🎯 {university.name} Survival Guide</h1>
