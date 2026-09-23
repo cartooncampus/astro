@@ -1,0 +1,155 @@
+<section class="about-contact" aria-label="About Cartoon Campus and contact information">
+	<div class="about">
+		<p class="eyebrow">About</p>
+		<h2>About Cartoon Campus</h2>
+		<p>
+			Cartoon Campus is your gateway to merchandise inspired by fictional universities from beloved stories.
+			We celebrate the academic spirit of these imagined worlds, offering designs for clothing, accessories,
+			and more.
+		</p>
+		<p>
+			Beyond products, dive deep into the lore of each universe through our detailed explorations of their
+			histories, characters, and cultures.
+		</p>
+	</div>
+
+	<div class="mission">
+		<h3>Our Mission</h3>
+		<ul>
+			<li>Connect fans through shared fandom</li>
+			<li>Provide high-quality, themed merchandise</li>
+			<li>Educate and entertain with rich lore</li>
+			<li>Support creators and artists</li>
+		</ul>
+	</div>
+
+	<div class="contact">
+		<p class="eyebrow">Contact</p>
+		<h2>Get in Touch</h2>
+		<p>Have questions about our products or universes? Want to suggest a new fictional school?</p>
+		<a href="mailto:cartooncampus@northmail.ca">Contact Us</a>
+	</div>
+</section>
+
+<style>
+	.about-contact {
+		display: grid;
+		grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);
+		gap: 1.5rem;
+		max-width: 1120px;
+		margin: 4rem auto 0;
+		padding: 0 1.5rem 4rem;
+	}
+
+	.about,
+	.mission,
+	.contact {
+		border-radius: 16px;
+		padding: 2rem;
+	}
+
+	.about,
+	.contact {
+		background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(37, 99, 235, 0.08));
+		border: 1px solid rgba(124, 58, 237, 0.15);
+	}
+
+	.mission {
+		background: white;
+		border: 1px solid rgba(124, 58, 237, 0.15);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+	}
+
+	.contact {
+		grid-column: 1 / -1;
+		text-align: center;
+	}
+
+	.eyebrow {
+		color: var(--accent);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		margin: 0 0 0.5rem;
+		text-transform: uppercase;
+	}
+
+	h2,
+	h3 {
+		color: rgb(var(--black));
+		margin: 0 0 1rem;
+	}
+
+	h2 {
+		font-size: 1.75rem;
+	}
+
+	p,
+	li {
+		color: rgb(var(--gray-dark));
+		line-height: 1.7;
+	}
+
+	.about p {
+		margin: 0 0 1rem;
+	}
+
+	.about p:last-child {
+		margin-bottom: 0;
+	}
+
+	.mission ul {
+		display: grid;
+		gap: 0.75rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.mission li {
+		padding-left: 1.5rem;
+		position: relative;
+	}
+
+	.mission li::before {
+		color: var(--accent);
+		content: '✦';
+		left: 0;
+		position: absolute;
+	}
+
+	.contact p {
+		margin: 0 auto 1.5rem;
+		max-width: 620px;
+	}
+
+	.contact a {
+		background: linear-gradient(135deg, #7c3aed, #2563eb);
+		border-radius: 8px;
+		color: white;
+		display: inline-block;
+		font-weight: 600;
+		padding: 0.75rem 1.5rem;
+		text-decoration: none;
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+
+	.contact a:hover {
+		box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 700px) {
+		.about-contact {
+			grid-template-columns: 1fr;
+			margin-top: 3rem;
+			padding: 0 1rem 3rem;
+		}
+
+		.about,
+		.mission,
+		.contact {
+			padding: 1.5rem;
+		}
+	}
+</style>
