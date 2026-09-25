@@ -1,28 +1,54 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<a class="site-logo" href="/">
+			<img src="/CC_Logo_Upscaled.png" alt="Cartoon Campus" />
+		</a>
 		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/" class="deferred-link">Home</HeaderLink>
 			<HeaderLink href="/fictional-worlds">Fictional Worlds</HeaderLink>
-			<HeaderLink href="/real-world">Real World</HeaderLink>
-			<HeaderLink href="/other-stuff">Other Stuff</HeaderLink>
+			<a href="https://store.cartooncampus.ca">Store</a>
+			<HeaderLink href="/real-world" class="deferred-link">Real World</HeaderLink>
+			<HeaderLink href="/other-stuff" class="deferred-link">Other Stuff</HeaderLink>
 		</div>
 		<div class="social-links">
-			<a href="https://twitter.com/cartooncampus" target="_blank" title="Follow CartoonCampus on Twitter">
-				<span class="sr-only">Follow CartoonCampus on Twitter</span>
+			<a
+				href="https://bsky.app/profile/cartooncampus.bsky.social"
+				target="_blank"
+				rel="noopener noreferrer"
+				title="Follow Cartoon Campus on Bluesky"
+			>
+				<span class="sr-only">Follow Cartoon Campus on Bluesky</span>
+				<svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32">
+					<path
+						fill="currentColor"
+						d="M12 10.8c-1.1-2.1-4.1-6.1-6.8-8C2.6 1 1.6 1.3 1 1.6c-.7.3-1 1-1 1.6 0 .7.4 5.7.7 6.5.9 2.6 4.1 3.6 7 3.1-4.2.6-8 2.3-3.1 7.8 5.5 5.8 7.5-1.3 7.5-4.9 0 3.6 2 10.7 7.5 4.9 4.9-5.5 1.1-7.2-3.1-7.8 2.9.5 6.1-.5 7-3.1.3-.8.7-5.8.7-6.5 0-.6-.3-1.3-1-1.6-.6-.3-1.6-.6-4.2 1.2-2.7 1.9-5.7 5.9-6.8 8Z"
+					/>
+				</svg>
+			</a>
+			<a
+				href="https://x.com/Cartoon_Campus"
+				target="_blank"
+				rel="noopener noreferrer"
+				title="Follow Cartoon Campus on X"
+			>
+				<span class="sr-only">Follow Cartoon Campus on X</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
 						fill="currentColor"
-						d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 11.075 2.5c-1.813 0-3.286 1.477-3.286 3.296 0 .26.03.51.09.75A9.335 9.335 0 0 1 1.67 3.15a3.28 3.28 0 0 0 1.018 4.382A3.28 3.28 0 0 1 .8 7.247v.041c0 1.596 1.124 2.92 2.622 3.224A3.283 3.283 0 0 1 .8 15.071c0 .155.015.31.041.458a9.321 9.321 0 0 0 5.218 1.461c6.26 0 9.655-5.106 9.655-9.334 0-.143-.011-.285-.033-.426a6.767 6.767 0 0 0 1.66-1.724z"
+						d="M12.632 0h2.454L9.72 6.128 16 16h-4.916L7.235 10.838 2.77 16H.314l5.735-6.56L0 0h5.04l3.478 4.594L12.632 0Zm-.861 1.291-8.55 13.46h1.453l8.55-13.46h-1.453Zm-6.09 0H2.976l7.632 13.418h2.705L5.68 1.291Z"
 					></path></svg
 				>
 			</a>
-			<a href="https://github.com/cartooncampus" target="_blank" title="CartoonCampus on GitHub">
+			<a
+				href="https://github.com/cartooncampus"
+				target="_blank"
+				rel="noopener noreferrer"
+				title="Cartoon Campus on GitHub"
+			>
 				<span class="sr-only">Go to CartoonCampus GitHub</span>
 				<svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
 					><path
@@ -46,24 +72,22 @@ import { SITE_TITLE } from '../consts';
 		top: 0;
 		z-index: 100;
 	}
-	h2 {
-		margin: 0;
-		font-size: 1.5em;
-		font-weight: 700;
+	.site-logo {
+		display: flex;
+		align-items: center;
+		padding: 0;
+		border-bottom: 0;
 	}
 
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-		background: linear-gradient(135deg, #7c3aed, #2563eb);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		transition: all 0.3s ease;
-	}
-
-	h2 a:hover {
+	.site-logo:hover {
 		opacity: 0.8;
+	}
+
+	.site-logo img {
+		display: block;
+		width: auto;
+		height: 48px;
+		border-radius: 0;
 	}
 
 	nav {
@@ -102,6 +126,10 @@ import { SITE_TITLE } from '../consts';
 		color: #7c3aed;
 	}
 
+	.deferred-link {
+		display: none;
+	}
+
 	.social-links,
 	.social-links a {
 		display: flex;
@@ -136,8 +164,8 @@ import { SITE_TITLE } from '../consts';
 			font-size: 0.9em;
 		}
 
-		h2 {
-			font-size: 1.2em;
+		.site-logo img {
+			height: 38px;
 		}
 	}
 </style>
