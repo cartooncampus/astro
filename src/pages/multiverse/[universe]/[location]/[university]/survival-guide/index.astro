@@ -1,0 +1,28 @@
+---
+import BaseHead from '../../../../../../components/BaseHead.astro';
+import Footer from '../../../../../../components/Footer.astro';
+import Header from '../../../../../../components/Header.astro';
+import SurvivalGuide from '../../../../../../components/SurvivalGuide.astro';
+import { locationUniversityRoutes } from '../../../../../../data/multiverseLocations';
+
+export function getStaticPaths() {
+	return locationUniversityRoutes.map(({ location, university, universitySlug }) => ({
+		params: { universe: location.universeSlug, location: location.slug, university: universitySlug },
+		props: { university },
+	}));
+}
+
+const { university } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Survival Guide - ${university.name} | CartoonCampus`} description={`Everything you need to know about attending ${university.name}.`} />
+	</head>
+	<body>
+		<Header />
+		<main><SurvivalGuide university={university} backHref="../" backLabel={university.shortName} /></main>
+		<Footer />
+	</body>
+</html>

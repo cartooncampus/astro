@@ -1,0 +1,316 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Dune Universe Universities - CartoonCampus"
+			description="Explore Arrakis University from Frank Herbert's Dune. Master desert ecology, spice farming, politics, and survival on the harshest world humanity has conquered."
+		/>
+		<style>
+			.dune-hero {
+				background: linear-gradient(135deg, rgba(234, 88, 12, 0.15) 0%, rgba(194, 65, 12, 0.1) 100%);
+				border-radius: 16px;
+				padding: 3rem 2rem;
+				margin-bottom: 3rem;
+				border: 2px solid rgba(234, 88, 12, 0.2);
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.dune-hero::before {
+				content: '';
+				position: absolute;
+				top: -50%;
+				right: -50%;
+				width: 200%;
+				height: 200%;
+				background: radial-gradient(circle, rgba(234, 88, 12, 0.08) 0%, transparent 70%);
+				animation: sandy 20s ease-in-out infinite;
+			}
+
+			@keyframes sandy {
+				0%, 100% { transform: translate(0, 0) rotate(0deg); }
+				50% { transform: translate(30px, 30px) rotate(10deg); }
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 2;
+			}
+
+			.dune-hero h1 {
+				background: linear-gradient(135deg, #ea580c, #c2410c);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 1rem;
+				font-size: 3.5rem;
+			}
+
+			.dune-hero .tagline {
+				font-size: 1.25rem;
+				color: rgb(var(--gray-dark));
+				max-width: 700px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.8;
+			}
+
+			.dune-hero .intro {
+				font-size: 1rem;
+				color: rgb(var(--gray-dark));
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			.back-link {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 0.5rem 1rem;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-link:hover {
+				transform: translateX(-4px);
+			}
+
+			.universities-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.university-card {
+				background: white;
+				border-radius: 16px;
+				padding: 2.5rem;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				border: 2px solid rgba(234, 88, 12, 0.1);
+				transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+				text-decoration: none;
+				color: inherit;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.university-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #ea580c, #c2410c);
+			}
+
+			.university-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+				border-color: #ea580c;
+			}
+
+			.card-icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.card-title {
+				font-size: 1.75rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin: 0 0 0.5rem 0;
+			}
+
+			.card-location {
+				font-size: 0.95rem;
+				color: #ea580c;
+				font-weight: 600;
+				margin-bottom: 1rem;
+			}
+
+			.card-description {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+				margin: 1.5rem 0;
+			}
+
+			.card-programs {
+				font-size: 0.9rem;
+				color: #ea580c;
+				font-weight: 500;
+				margin: 1rem 0;
+			}
+
+			.explore-btn {
+				display: inline-block;
+				margin-top: 1.5rem;
+				padding: 0.75rem 1.5rem;
+				background: linear-gradient(135deg, #ea580c, #c2410c);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.explore-btn:hover {
+				transform: translateX(4px);
+				box-shadow: 0 8px 20px rgba(234, 88, 12, 0.3);
+			}
+
+			.context-box {
+				background: linear-gradient(135deg, rgba(234, 88, 12, 0.08) 0%, rgba(194, 65, 12, 0.08) 100%);
+				border-left: 4px solid #ea580c;
+				border-radius: 12px;
+				padding: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.context-box h2 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.context-box p {
+				color: rgb(var(--gray-dark));
+				line-height: 1.7;
+				margin-bottom: 1rem;
+			}
+
+			.context-box ul {
+				margin: 1rem 0;
+				padding-left: 2rem;
+				color: rgb(var(--gray-dark));
+			}
+
+			.context-box li {
+				margin-bottom: 0.5rem;
+			}
+
+			.store-cta {
+				background: linear-gradient(135deg, rgba(234, 88, 12, 0.1) 0%, rgba(194, 65, 12, 0.1) 100%);
+				border: 2px solid #ea580c;
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				margin-top: 3rem;
+			}
+
+			.store-cta h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.store-cta p {
+				color: rgb(var(--gray-dark));
+				margin-bottom: 1.5rem;
+			}
+
+			.store-link {
+				display: inline-block;
+				padding: 0.75rem 2rem;
+				background: linear-gradient(135deg, #ea580c, #c2410c);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.store-link:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 30px rgba(234, 88, 12, 0.4);
+			}
+
+			@media (max-width: 768px) {
+				.dune-hero {
+					padding: 2rem 1.5rem;
+				}
+
+				.dune-hero h1 {
+					font-size: 2.5rem;
+				}
+
+				.dune-hero .tagline {
+					font-size: 1.1rem;
+				}
+
+				.universities-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a href="../" class="back-link">← Back to Multiverse</a>
+
+			<section class="dune-hero">
+				<div class="hero-content">
+					<h1>🏜️ Dune Universe</h1>
+					<p class="tagline">Frank Herbert's Desert Empire</p>
+					<p class="intro">
+						Welcome to the educational institution of the harshest world humanity has ever conquered. 
+						Arrakis University stands as a beacon of learning in a desert of endless sand and spice. 
+						Master ecology, politics, water conservation, and the subtle arts of desert survival.
+					</p>
+				</div>
+			</section>
+
+			<section class="context-box">
+				<h2>📚 About the Dune Universe</h2>
+				<p>
+					Arrakis—the planet of spice—holds the key to interstellar travel, wealth, and power. Arrakis University 
+					trains the leaders, scientists, and strategists who will shape the future of the known universe.
+				</p>
+				<p><strong>Key Themes:</strong></p>
+				<ul>
+					<li><strong>Desert Ecology:</strong> Understanding the sandworm-spice complex</li>
+					<li><strong>Spice Economics:</strong> The most valuable commodity in the universe</li>
+					<li><strong>Water Management:</strong> Survival on a desert planet</li>
+					<li><strong>Political Strategy:</strong> The Great Houses and intergalactic power plays</li>
+					<li><strong>Mysticism & Philosophy:</strong> The Bene Gesserit way and deeper mysteries</li>
+				</ul>
+			</section>
+
+			<section class="universities-grid">
+				<a href="./arrakis-university/" class="university-card">
+					<div class="card-icon">🏜️</div>
+					<h3 class="card-title">Arrakis University</h3>
+					<p class="card-location">📍 Arrakeen, Arrakis</p>
+					<p class="card-description">
+						Built from the wealth of spice trade, Arrakis University stands as humanity's premier institution for ecological mastery, 
+						political philosophy, and desert survival. Our graduates have shaped empires.
+					</p>
+					<p class="card-programs">🎓 3 Featured Courses</p>
+					<span class="explore-btn">Explore Arrakis U →</span>
+				</a>
+			</section>
+
+			<section class="store-cta">
+				<h3>Show Your Desert Pride</h3>
+				<p>
+					Whether you're a spice merchant, Fremen ally, or devoted fan of Dune, 
+					wear your affiliation with pride. Our official Dune Universe merchandise celebrates the academic traditions of Arrakis.
+				</p>
+				<a href="https://store.cartooncampus.ca/dune" target="_blank" rel="noopener noreferrer" class="store-link">
+					Shop Dune Universe Merch
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

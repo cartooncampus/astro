@@ -1,16 +1,16 @@
 ---
-import type { FictionalLocation } from '../data/fictionalLocations';
+import type { MultiverseLocation } from '../data/multiverseLocations';
 
 interface Props {
-	location: FictionalLocation;
+	location: MultiverseLocation;
 }
 
 const { location } = Astro.props;
-const locationPath = `/fictional-worlds/${location.universeSlug}/${location.slug}`;
+const locationPath = `/multiverse/${location.universeSlug}/${location.slug}`;
 ---
 
 <main class={`location-hub ${location.theme}`}>
-	<a class="back-link" href="/fictional-worlds/">← Back to Fictional Worlds</a>
+	<a class="back-link" href="/multiverse/">← Back to Multiverse</a>
 	<section class="hero">
 		<p class="eyebrow">{location.type} guide</p>
 		<div class="icon" aria-hidden="true">{location.icon}</div>

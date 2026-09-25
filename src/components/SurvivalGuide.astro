@@ -1,13 +1,13 @@
 ---
-import type { FictionalUniversity } from '../data/fictionalUniversities';
+import type { MultiverseUniversity } from '../data/multiverseUniversities';
 
 interface Props {
-	university: FictionalUniversity;
+	university: MultiverseUniversity;
 	backHref?: string;
 	backLabel?: string;
 }
 
-const { university, backHref = '/fictional-worlds/', backLabel = 'Fictional Worlds' } = Astro.props;
+const { university, backHref = '/multiverse/', backLabel = 'Multiverse' } = Astro.props;
 const compatibilityEntries = Object.entries(university.survivalGuide.speciesCompatibility);
 ---
 

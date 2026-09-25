@@ -1,0 +1,317 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="Avatar Universe Universities - CartoonCampus"
+			description="Explore the University of Ba Sing Se from Avatar: The Last Airbender. Master earthbending, history, and society in the Earth Kingdom's greatest city."
+		/>
+		<style>
+			.avatar-hero {
+				background: linear-gradient(135deg, rgba(5, 150, 105, 0.15) 0%, rgba(4, 120, 87, 0.1) 100%);
+				border-radius: 16px;
+				padding: 3rem 2rem;
+				margin-bottom: 3rem;
+				border: 2px solid rgba(5, 150, 105, 0.2);
+				text-align: center;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.avatar-hero::before {
+				content: '';
+				position: absolute;
+				top: -50%;
+				right: -50%;
+				width: 200%;
+				height: 200%;
+				background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
+				animation: earthen 20s ease-in-out infinite;
+			}
+
+			@keyframes earthen {
+				0%, 100% { transform: translate(0, 0); }
+				50% { transform: translate(30px, 30px); }
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 2;
+			}
+
+			.avatar-hero h1 {
+				background: linear-gradient(135deg, #059669, #047857);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 1rem;
+				font-size: 3.5rem;
+			}
+
+			.avatar-hero .tagline {
+				font-size: 1.25rem;
+				color: rgb(var(--gray-dark));
+				max-width: 700px;
+				margin: 0 auto 1.5rem;
+				line-height: 1.8;
+			}
+
+			.avatar-hero .intro {
+				font-size: 1rem;
+				color: rgb(var(--gray-dark));
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.7;
+			}
+
+			.back-link {
+				display: inline-block;
+				margin-bottom: 2rem;
+				padding: 0.5rem 1rem;
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-link:hover {
+				transform: translateX(-4px);
+			}
+
+			.universities-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.university-card {
+				background: white;
+				border-radius: 16px;
+				padding: 2.5rem;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				border: 2px solid rgba(5, 150, 105, 0.1);
+				transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+				text-decoration: none;
+				color: inherit;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.university-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 4px;
+				background: linear-gradient(90deg, #059669, #047857);
+			}
+
+			.university-card:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+				border-color: #059669;
+			}
+
+			.card-icon {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+			}
+
+			.card-title {
+				font-size: 1.75rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+				margin: 0 0 0.5rem 0;
+			}
+
+			.card-location {
+				font-size: 0.95rem;
+				color: #059669;
+				font-weight: 600;
+				margin-bottom: 1rem;
+			}
+
+			.card-description {
+				font-size: 0.95rem;
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+				margin: 1.5rem 0;
+			}
+
+			.card-programs {
+				font-size: 0.9rem;
+				color: #059669;
+				font-weight: 500;
+				margin: 1rem 0;
+			}
+
+			.explore-btn {
+				display: inline-block;
+				margin-top: 1.5rem;
+				padding: 0.75rem 1.5rem;
+				background: linear-gradient(135deg, #059669, #047857);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.explore-btn:hover {
+				transform: translateX(4px);
+				box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+			}
+
+			.context-box {
+				background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(4, 120, 87, 0.08) 100%);
+				border-left: 4px solid #059669;
+				border-radius: 12px;
+				padding: 2rem;
+				margin-bottom: 3rem;
+			}
+
+			.context-box h2 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.context-box p {
+				color: rgb(var(--gray-dark));
+				line-height: 1.7;
+				margin-bottom: 1rem;
+			}
+
+			.context-box ul {
+				margin: 1rem 0;
+				padding-left: 2rem;
+				color: rgb(var(--gray-dark));
+			}
+
+			.context-box li {
+				margin-bottom: 0.5rem;
+			}
+
+			.store-cta {
+				background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, rgba(4, 120, 87, 0.1) 100%);
+				border: 2px solid #059669;
+				border-radius: 12px;
+				padding: 2rem;
+				text-align: center;
+				margin-top: 3rem;
+			}
+
+			.store-cta h3 {
+				margin-top: 0;
+				color: rgb(var(--black));
+			}
+
+			.store-cta p {
+				color: rgb(var(--gray-dark));
+				margin-bottom: 1.5rem;
+			}
+
+			.store-link {
+				display: inline-block;
+				padding: 0.75rem 2rem;
+				background: linear-gradient(135deg, #059669, #047857);
+				color: white;
+				text-decoration: none;
+				border-radius: 8px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.store-link:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 30px rgba(5, 150, 105, 0.4);
+			}
+
+			@media (max-width: 768px) {
+				.avatar-hero {
+					padding: 2rem 1.5rem;
+				}
+
+				.avatar-hero h1 {
+					font-size: 2.5rem;
+				}
+
+				.avatar-hero .tagline {
+					font-size: 1.1rem;
+				}
+
+				.universities-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<a href="../" class="back-link">← Back to Multiverse</a>
+
+			<section class="avatar-hero">
+				<div class="hero-content">
+					<h1>🏔️ Avatar Universe</h1>
+					<p class="tagline">The Last Airbender's Earth Kingdom</p>
+					<p class="intro">
+						Welcome to the heart of Earth Kingdom education. Ba Sing Se stands as a monument to earthen tradition and stability. 
+					
+Our university trains benders and non-benders alike in the art of earthbending, history, philosophy, and inclusive society building.
+					</p>
+				</div>
+			</section>
+
+			<section class="context-box">
+				<h2>📚 About the Avatar Universe</h2>
+				<p>
+					In the world of Avatar: The Last Airbender, the University of Ba Sing Se represents the best of Earth Kingdom education. 
+					A place where earthbenders master their craft, where history and philosophy are deeply respected, and where benders and 
+					non-benders work together to build a stronger society.
+				</p>
+				<p><strong>Key Themes:</strong></p>
+				<ul>
+					<li><strong>Earthbending:</strong> Military applications, construction, and mastery</li>
+					<li><strong>Earth Kingdom History:</strong> 4,000 years of tradition and culture</li>
+					<li><strong>Architecture & Engineering:</strong> The walls that protect civilization</li>
+					<li><strong>Inclusive Society:</strong> Building systems that work for all, bender and non-bender</li>
+					<li><strong>Philosophy:</strong> Balance, earth, stability, and the Avatar's role</li>
+				</ul>
+			</section>
+
+			<section class="universities-grid">
+				<a href="./ba-sing-se-university/" class="university-card">
+					<div class="card-icon">🏔️</div>
+					<h3 class="card-title">University of Ba Sing Se</h3>
+					<p class="card-location">📍 Ba Sing Se, Earth Kingdom</p>
+					<p class="card-description">
+						The Earth Kingdom's center of learning. Where earthbenders become leaders, scholars study history and philosophy, 
+						and students learn to build a society that values all its citizens.
+					</p>
+					<p class="card-programs">🎓 3 Featured Courses</p>
+					<span class="explore-btn">Explore Ba Sing Se U →</span>
+				</a>
+			</section>
+
+			<section class="store-cta">
+				<h3>Show Your Earth Kingdom Pride</h3>
+				<p>
+					Whether you're an earthbender, a scholar of Earth Kingdom culture, or devoted fan of Avatar, 
+					wear your affiliation with pride. Our official Avatar Universe merchandise celebrates the traditions of Ba Sing Se.
+				</p>
+				<a href="https://store.cartooncampus.ca/avatar" target="_blank" rel="noopener noreferrer" class="store-link">
+					Shop Avatar Universe Merch
+				</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,28 @@
+---
+import BaseHead from '../../../../components/BaseHead.astro';
+import Footer from '../../../../components/Footer.astro';
+import Header from '../../../../components/Header.astro';
+import LocationHub from '../../../../components/LocationHub.astro';
+import { multiverseLocations } from '../../../../data/multiverseLocations';
+
+export function getStaticPaths() {
+	return multiverseLocations.map((location) => ({
+		params: { universe: location.universeSlug, location: location.slug },
+		props: { location },
+	}));
+}
+
+const { location } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${location.name} ${location.type} Guide - CartoonCampus`} description={location.description} />
+	</head>
+	<body>
+		<Header />
+		<LocationHub location={location} />
+		<Footer />
+	</body>
+</html>

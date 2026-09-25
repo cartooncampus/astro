@@ -1,0 +1,21 @@
+---
+import BaseHead from '../../../../../components/BaseHead.astro';
+import Footer from '../../../../../components/Footer.astro';
+import Header from '../../../../../components/Header.astro';
+import SurvivalGuide from '../../../../../components/SurvivalGuide.astro';
+import { streelingUniversity } from '../../../../../data/multiverseUniversities';
+
+const university = streelingUniversity;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Survival Guide - ${university.name} | CartoonCampus`} description={`Compatibility, environmental hazards, and survival tips for ${university.name}.`} />
+	</head>
+	<body>
+		<Header />
+		<main><SurvivalGuide university={university} /></main>
+		<Footer />
+	</body>
+</html>

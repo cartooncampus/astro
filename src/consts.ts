@@ -8,13 +8,13 @@ export const SITE_AUTHOR = "CartoonCampus";
 // Navigation items for the three main sections
 export const MAIN_SECTIONS = [
 	{
-		id: "fictional-worlds",
-		title: "Fictional Worlds",
+		id: "multiverse",
+		title: "Multiverse",
 		subtitle: "The Lore & Fan Hub",
 		description: "Immerse yourself in interdimensional admissions counseling. Explore Streeling University, Miskatonic University, Ba Sing Se, and legendary academic institutions across fiction.",
 		icon: "🌍",
 		color: "from-purple-600 to-indigo-600",
-		href: "/fictional-worlds",
+		href: "/multiverse",
 		tone: "Immersive, satirical interdimensional admissions counseling",
 	},
 	{
