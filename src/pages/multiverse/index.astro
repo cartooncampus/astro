@@ -78,14 +78,15 @@ import { SITE_TITLE } from '../../consts';
 
 			.universes-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-				gap: 2rem;
+				grid-template-columns: repeat(3, minmax(0, 300px));
+				gap: 1.5rem;
+				justify-content: center;
 				margin-bottom: 4rem;
 			}
 
 			.universes-heading {
 				font-size: 2.2rem;
-				margin-bottom: 1.5rem;
+				margin-bottom: 0.75rem;
 				text-align: center;
 			}
 
@@ -94,14 +95,33 @@ import { SITE_TITLE } from '../../consts';
 				flex-direction: column;
 				text-decoration: none;
 				border-radius: 16px;
-				padding: 2rem;
-				min-height: 300px;
+				padding: 1.5rem;
+				min-height: 270px;
 				transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 				position: relative;
 				overflow: hidden;
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 				border: 1px solid rgba(0, 0, 0, 0.05);
 				background: white;
+			}
+
+			.universe-card.avatar {
+				grid-column: 2;
+			}
+
+			.ad-placeholder {
+				align-items: center;
+				background: rgba(255, 255, 255, 0.5);
+				border: 1px dashed rgba(96, 115, 159, 0.45);
+				border-radius: 16px;
+				color: rgb(var(--gray));
+				display: flex;
+				font-size: 0.75rem;
+				font-weight: 700;
+				justify-content: center;
+				letter-spacing: 0.1em;
+				min-height: 270px;
+				text-transform: uppercase;
 			}
 
 			.universe-card:hover {
@@ -246,11 +266,29 @@ import { SITE_TITLE } from '../../consts';
 
 				.universes-grid {
 					grid-template-columns: 1fr;
-					gap: 1.5rem;
+					gap: 1rem;
+				}
+
+				.universe-card.avatar {
+					grid-column: auto;
+				}
+
+				.ad-placeholder {
+					display: none;
 				}
 
 				.universes-heading {
 					font-size: 1.75rem;
+				}
+
+				@media (min-width: 769px) and (max-width: 1100px) {
+					.universes-grid {
+						grid-template-columns: repeat(2, minmax(0, 300px));
+					}
+
+					.universe-card.avatar {
+						grid-column: auto;
+					}
 				}
 
 				.cta-section h2 {
@@ -316,6 +354,8 @@ import { SITE_TITLE } from '../../consts';
 					<span class="explore-btn">Explore →</span>
 				</a>
 
+				<aside class="ad-placeholder" aria-label="Advertisement">Advertisement</aside>
+
 				<!-- Avatar: The Last Airbender -->
 				<a href="/multiverse/avatar/ba-sing-se/" class="universe-card avatar">
 					<div class="card-icon">🏔️</div>
@@ -328,6 +368,8 @@ import { SITE_TITLE } from '../../consts';
 					<p class="card-institutions">📍 University of Ba Sing Se, Earth Kingdom</p>
 					<span class="explore-btn">Explore →</span>
 				</a>
+
+				<aside class="ad-placeholder" aria-label="Advertisement">Advertisement</aside>
 				</div>
 			</section>
 
