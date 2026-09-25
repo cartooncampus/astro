@@ -83,6 +83,12 @@ import { SITE_TITLE } from '../../consts';
 				margin-bottom: 4rem;
 			}
 
+			.universes-heading {
+				font-size: 2.2rem;
+				margin-bottom: 1.5rem;
+				text-align: center;
+			}
+
 			.universe-card {
 				display: flex;
 				flex-direction: column;
@@ -243,6 +249,10 @@ import { SITE_TITLE } from '../../consts';
 					gap: 1.5rem;
 				}
 
+				.universes-heading {
+					font-size: 1.75rem;
+				}
+
 				.cta-section h2 {
 					font-size: 1.75rem;
 				}
@@ -264,7 +274,9 @@ import { SITE_TITLE } from '../../consts';
 				</p>
 			</section>
 
-			<section class="universes-grid">
+			<section aria-labelledby="choose-universe-title">
+				<h2 id="choose-universe-title" class="universes-heading">Choose your universe</h2>
+				<div class="universes-grid">
 				<!-- Lovecraft Mythos -->
 				<a href="/multiverse/lovecraft/arkham/" class="universe-card lovecraft">
 					<div class="card-icon">👁️</div>
@@ -316,6 +328,7 @@ import { SITE_TITLE } from '../../consts';
 					<p class="card-institutions">📍 University of Ba Sing Se, Earth Kingdom</p>
 					<span class="explore-btn">Explore →</span>
 				</a>
+				</div>
 			</section>
 
 			<section class="cta-section">
